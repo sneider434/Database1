@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AttendeeController;
+use App\Http\Controllers\EventsController;
+use App\Http\Controllers\RegistrationsController;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -29,6 +32,11 @@ Route::prefix('admin')->group(function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::resource('attendees',AttendeeController::class);
+    Route::resource('events',EventsController::class);
+    Route::resource('registrations',RegistrationsController::class);
+
+
 });
 
 

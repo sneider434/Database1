@@ -6,19 +6,39 @@
     <div class="sidebar">
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
+
                 <li class="nav-item">
-                    <a href="{{ url('/home') }}"
-                       class="nav-link {{ request()->is('home') ? 'active' : '' }}">
+                    <a href="{{ route('home') }}"
+                       class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
+
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-bed"></i>
-                        <p>Habitaciones</p>
+                    <a href="{{ route('events.index') }}"
+                       class="nav-link {{ request()->routeIs('events.*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-calendar-alt"></i>
+                        <p>Events</p>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('attendees.index') }}"
+                       class="nav-link {{ request()->routeIs('attendees.*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>Attendees</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('registrations.index') }}"
+                       class="nav-link {{ request()->routeIs('registrations.*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-ticket-alt"></i>
+                        <p>Registrations</p>
+                    </a>
+                </li>
+
             </ul>
         </nav>
     </div>
