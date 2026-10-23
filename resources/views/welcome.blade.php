@@ -5,42 +5,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ config('app.name') }}</title>
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        /* Fondo: degradados suaves + cuadrícula que se desvanece hacia los bordes */
+        .bg-stylized {
+            background-color: #f5f5f4;
+            background-image:
+                radial-gradient(60rem 40rem at 15% 0%, #e7e5e4 0%, transparent 60%),
+                radial-gradient(55rem 38rem at 100% 100%, #d6d3d1 0%, transparent 55%);
+        }
+
+        .bg-grid {
+            background-image:
+                linear-gradient(to right, rgba(120, 113, 108, .12) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(120, 113, 108, .12) 1px, transparent 1px);
+            background-size: 48px 48px;
+            -webkit-mask-image: radial-gradient(ellipse at center, #000 20%, transparent 72%);
+            mask-image: radial-gradient(ellipse at center, #000 20%, transparent 72%);
+        }
+    </style>
 </head>
-<body class="min-h-screen bg-white text-neutral-900 antialiased flex items-center justify-center px-6">
+<body class="bg-stylized relative min-h-screen overflow-hidden text-stone-900 antialiased">
 
-<main class="w-full max-w-sm">
+{{-- Cuadrícula decorativa --}}
+<div class="bg-grid pointer-events-none absolute inset-0"></div>
 
-    {{-- Marca --}}
-    <p class="text-xs font-medium uppercase tracking-widest text-neutral-400 mb-6">
-        {{ config('app.name') }}
-    </p>
+{{-- Círculos difuminados --}}
+<div class="pointer-events-none absolute -left-24 -top-24 h-96 w-96 rounded-full bg-stone-300/40 blur-3xl"></div>
+<div class="pointer-events-none absolute -bottom-32 -right-24 h-[28rem] w-[28rem] rounded-full bg-stone-400/30 blur-3xl"></div>
 
-    {{-- Título --}}
-    <h1 class="text-4xl font-semibold tracking-tight leading-tight">
-        Eventos y asistentes,<br>en un solo lugar.
+{{-- Contenido --}}
+<main class="relative z-10 flex min-h-screen flex-col items-center justify-center px-6 text-center">
+
+        <span class="mb-8 rounded-full border border-stone-300 bg-white/70 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.25em] text-stone-500 backdrop-blur">
+            {{ config('app.name') }}
+        </span>
+
+    <h1 class="max-w-3xl text-5xl font-semibold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
+        Organiza eventos.<br>
+        <span class="text-stone-400">Controla asistentes.</span>
     </h1>
-    <p class="mt-4 text-neutral-500">
-        Crea eventos, registra asistentes y lleva el control de cada inscripción.
+
+    <p class="mt-6 max-w-md text-lg text-stone-500">
+        Crea tus eventos, registra a cada asistente y consulta las inscripciones desde un solo panel.
     </p>
 
-    {{-- Acciones --}}
-    <div class="mt-10 space-y-3">
+    <div class="mt-10 flex flex-wrap justify-center gap-3">
         <a href="{{ route('login') }}"
-           class="block w-full rounded-lg bg-neutral-900 py-3 text-center text-sm font-medium text-white transition hover:bg-neutral-700">
+           class="rounded-xl bg-stone-900 px-8 py-3.5 text-sm font-medium text-white shadow-lg shadow-stone-900/20 transition hover:-translate-y-0.5 hover:bg-stone-700">
             Iniciar sesión
         </a>
-
         <a href="{{ route('register') }}"
-           class="block w-full rounded-lg border border-neutral-300 py-3 text-center text-sm font-medium text-neutral-900 transition hover:border-neutral-900">
+           class="rounded-xl border border-stone-300 bg-white/80 px-8 py-3.5 text-sm font-medium text-stone-900 backdrop-blur transition hover:-translate-y-0.5 hover:border-stone-900">
             Crear cuenta
         </a>
     </div>
-
-    {{-- Pie --}}
-    <p class="mt-10 text-xs text-neutral-400">
-        ¿Necesitas ayuda?
-        <a href="#" class="underline underline-offset-2 hover:text-neutral-900">Contáctanos</a>
-    </p>
 
 </main>
 

@@ -24,8 +24,12 @@
                                 <tr>
                                     <th width="10px">ID</th>
                                     <th>Attendee</th>
-                                    <th width="60px">Estado</th>
-                                    <th width="90px">Acción</th>
+                                    <th>last_name</th>
+                                    <th>email</th>
+                                    <th>Phone</th>
+                                    <th width="60px">Status</th>
+                                    <th width="90px">Action</th>
+
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -33,9 +37,11 @@
                                 <tr>
                                     <td>{{ $attendee->id }}</td>
                                     <td>{{ $attendee->name }}</td>
-                                    <td>
-                                        {{ $attendee->status}}
-                                    </td>
+                                    <td>{{ $attendee->last_name }}</td>
+                                    <td>{{ $attendee->email }}</td>
+                                    <td>{{ $attendee->phone }}</td>
+                                    <td>{{ $attendee->status}}</td>
+
                                     <td>
                                         <a href="#" class="btn btn-info btn-sm" title="Editar"><i class="fas fa-pencil-alt"></i></a>
                                         <form class="d-inline delete-form" action="#"  method="POST">
