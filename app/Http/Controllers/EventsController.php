@@ -21,7 +21,7 @@ class EventsController extends Controller
      */
     public function create()
     {
-        //
+        return view('events.create');
     }
 
     /**
@@ -29,7 +29,8 @@ class EventsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $events = Event::created($request->all());
+        return redirect()->route('events.index');
     }
 
     /**

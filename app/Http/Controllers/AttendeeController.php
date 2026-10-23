@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Attendee;
+use App\Models\Event;
 use Illuminate\Http\Request;
 
 class AttendeeController extends Controller
@@ -29,7 +30,8 @@ class AttendeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attendee = Attendee::created($request->all());
+        return redirect()->route('attendees.index');
     }
 
     /**
