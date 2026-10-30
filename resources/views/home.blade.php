@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Panel De Control')
+@section('title','Dashboard')
 
 @section('content')
 
@@ -26,7 +26,7 @@
                         <div class="icon">
                             <i class="ion ion-stats-bars"></i>
                         </div>
-                        <a href="" class="small-box-footer">Más Información <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="" class="small-box-footer">More Information <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-6">

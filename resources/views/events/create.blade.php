@@ -29,7 +29,7 @@
                                             <input type="text" id="name" name="name"
                                                    class="form-control @error('name') is-invalid @enderror"
                                                    placeholder="Por ejemplo, Conferencia anual"
-                                                   autocomplete="off" value="{{ old('name') }}">
+                                                   autocomplete="off"  value="{{ old('name') }}">
                                             @error('name')
                                             <span class="invalid-feedback">{{ $message }}</span>
                                             @enderror
@@ -54,7 +54,7 @@
                                             <input type="text" id="location" name="location"
                                                    class="form-control @error('location') is-invalid @enderror"
                                                    placeholder="Por ejemplo, Auditorio principal"
-                                                   autocomplete="off" value="{{ old('location') }}">
+                                                   autocomplete="off"  value="{{ old('location') }}">
                                             @error('location')
                                             <span class="invalid-feedback">{{ $message }}</span>
                                             @enderror

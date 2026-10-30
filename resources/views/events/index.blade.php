@@ -16,19 +16,23 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header bg-secondary" style="font-size: 1.75rem;font-weight: 500; line-height: 1.2; margin-bottom: 0.5rem;">
-                            @yield('title')
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span>@yield('title')</span>
+                                <a href="{{ route('events.create') }}" class="btn btn-light btn-sm">New Event</a>
+                            </div>
                         </div>
                         <div class="card-body">
                             <table id="example1" class="table table-bordered table-hover" style="width:100%">
                                 <thead class="text-primary">
                                 <tr>
                                     <th width="10px">ID</th>
-                                    <th>Event</th>
+                                    <th>Name-Event</th>
                                     <th>Description</th>
                                     <th>Start_date</th>
                                     <th>Location</th>
-                                    <th width="60px">Status</th>
-                                    <th width="90px">Action</th>
+                                    <th>registered attendees</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
 
                                 </tr>
                                 </thead>
@@ -38,16 +42,25 @@
                                     <td>{{ $event->id }}</td>
                                     <td>{{ $event->name }}</td>
                                     <td>{{ $event->description }}</td>
-                                    <td>{{ $event->start_date }}</td>
+                                    <td>{{ $event->start_date,\Carbon\Carbon::parse($event->start_date)->format('Y-m-d') }}</td>
                                     <td>{{ $event->location }}</td>
+                                    <td>{{ $event->registration_count }}</td>
                                     <td>{{ $event->status}}</td>
 
                                     <td>
-                                        <a href="#" class="btn btn-info btn-sm" title="Editar"><i class="fas fa-pencil-alt"></i></a>
-                                        <form class="d-inline delete-form" action="#"  method="POST">
+                                        <a href="{{ route('events.edit', $event) }}" class="btn btn-info btn-sm" title="Editar">
+                                            <i class="fas fa-pencil-alt"></i>
+                                        </a>
+                                        <a href="{{ route('events.show', $event) }}" class="btn btn-success btn-sm" title="Ver">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                        <form class="d-inline" action="{{ route('events.destroy', $event) }}" method="POST"
+                                              onsubmit="return confirm('¿Eliminar este evento?')">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm" title="Eliminar"><i class="fas fa-trash-alt"></i></button>
+                                            <button type="submit" class="btn btn-danger btn-sm" title="Eliminar">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
                                         </form>
                                     </td>
                                 </tr>

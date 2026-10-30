@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 
-#[Fillable(['attendee_id','event_id','registration_date','notes','timestamps','registration_by'])]
+#[Fillable(['attendee_id','event_id','registration_date','notes','registered_by'])]
 #[Hidden(['registered_by'])]
 class Registration extends Model
 {

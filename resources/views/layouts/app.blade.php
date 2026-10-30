@@ -30,6 +30,41 @@
     @vite(['resources/sass/app.scss','resources/js/app.js'])
     @stack('css')
 
+    <!-- jQuery -->
+    <script src="{{asset('backend/plugins/jquery/jquery.min.js')}}"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="{{asset('backend/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    <!-- Bootstrap 4 -->
+    <script src="{{asset('backend/plugins/bootstrap/js/bootstrap.bundle.js')}}"></script>
+    <!-- ChartJS -->
+    <script src="{{asset('backend/plugins/chart.js/Chart.js')}}"></script>
+    <!-- Sparkline -->
+    <script src="{{asset('backend/plugins/sparklines/sparkline.js')}}"></script>
+    <!-- JQVMap -->
+    <script src="{{asset('backend/plugins/jqvmap/jquery.vmap.js')}}"></script>
+    <script src="{{asset('backend/plugins/jqvmap/maps/jquery.vmap.usa.js')}}"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="{{asset('backend/plugins/jquery-knob/jquery.knob.js')}}"></script>
+    <!-- daterangepicker -->
+    <script src="{{asset('backend/plugins/moment/moment.js')}}"></script>
+    <script src="{{asset('backend/plugins/daterangepicker/daterangepicker.js')}}"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="{{asset('backend/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.js')}}"></script>
+    <!-- Summernote -->
+    <script src="{{asset('backend/plugins/summernote/summernote-bs4.js')}}"></script>
+    <!-- overlayScrollbars -->
+    <script src="{{asset('backend/plugins/overlayScrollbars/js/jquery.overlayScrollbars.js')}}"></script>
+    <!-- AdminLTE App -->
+    <script src="{{asset('backend/dist/js/adminlte.js')}}"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="{{asset('backend/dist/js/demo.js')}}"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="{{asset('backend/dist/js/pages/dashboard.js')}}"></script>
+    @stack('scripts')
 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -43,47 +78,5 @@
 </body>
 
 
-<!-- jQuery -->
-<script src="{{asset('backend/plugins/jquery/jquery.min.js')}}"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="{{asset('backend/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-    $.widget.bridge('uibutton', $.ui.button)
-</script>
-<!-- Bootstrap 4 -->
-<script src="{{asset('backend/plugins/bootstrap/js/bootstrap.bundle.js')}}"></script>
-<!-- ChartJS -->
-<script src="{{asset('backend/plugins/chart.js/Chart.js')}}"></script>
-<!-- Sparkline -->
-<script src="{{asset('backend/plugins/sparklines/sparkline.js')}}"></script>
-<!-- JQVMap -->
-<script src="{{asset('backend/plugins/jqvmap/jquery.vmap.js')}}"></script>
-<script src="{{asset('backend/plugins/jqvmap/maps/jquery.vmap.usa.js')}}"></script>
-<!-- jQuery Knob Chart -->
-<script src="{{asset('backend/plugins/jquery-knob/jquery.knob.js')}}"></script>
-<!-- daterangepicker -->
-<script src="{{asset('backend/plugins/moment/moment.js')}}"></script>
-<script src="{{asset('backend/plugins/daterangepicker/daterangepicker.js')}}"></script>
-<!-- Tempusdominus Bootstrap 4 -->
-<script src="{{asset('backend/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.js')}}"></script>
-<!-- Summernote -->
-<script src="{{asset('backend/plugins/summernote/summernote-bs4.js')}}"></script>
-<!-- overlayScrollbars -->
-<script src="{{asset('backend/plugins/overlayScrollbars/js/jquery.overlayScrollbars.js')}}"></script>
-<!-- AdminLTE App -->
-<script src="{{asset('backend/dist/js/adminlte.js')}}"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="{{asset('backend/dist/js/demo.js')}}"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{asset('backend/dist/js/pages/dashboard.js')}}"></script>
 
-
-<!-- jQuery -->
-<script src="../../plugins/jquery/jquery.js"></script>
-<!-- Bootstrap 4 -->
-<script src="../../plugins/bootstrap/js/bootstrap.bundle.js"></script>
-<!-- AdminLTE App -->
-<script src="../../dist/js/adminlte.js"></script>
-@stack('scripts')
 </html>

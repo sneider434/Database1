@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-#[Fillable(['name', 'description','start_date','location','status','timestamps','registered_by'])]
+#[Fillable(['name', 'description','start_date','location','status','registered_by'])]
 #[Hidden(['status','registered_by'])]
 
 class Event extends Model

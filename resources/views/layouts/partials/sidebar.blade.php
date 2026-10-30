@@ -31,13 +31,7 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a href="{{ route('registrations.index') }}"
-                       class="nav-link {{ request()->routeIs('registrations.*') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-ticket-alt"></i>
-                        <p>Registrations</p>
-                    </a>
-                </li>
+
 
             </ul>
         </nav>
