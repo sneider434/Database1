@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Crear Asistente')
+@section('title','Create Attendee')
 
 @section('content')
 <div class="content-wrapper">
@@ -25,7 +25,7 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-12">
                                         <div class="form-group">
-                                            <label for="name">Nombre <strong style="color:red;">(*)</strong></label>
+                                            <label for="name">Name <strong style="color:red;">(*)</strong></label>
                                             <input type="text" id="name" name="name"
                                                    class="form-control @error('name') is-invalid @enderror"
                                                    autocomplete="off" value="{{ old('name') }}">
@@ -37,7 +37,7 @@
 
                                     <div class="col-lg-6 col-md-6 col-sm-12">
                                         <div class="form-group">
-                                            <label for="last_name">Apellido <strong style="color:red;">(*)</strong></label>
+                                            <label for="last_name">Last Name <strong style="color:red;">(*)</strong></label>
                                             <input type="text" id="last_name" name="last_name"
                                                    class="form-control @error('last_name') is-invalid @enderror"
                                                    autocomplete="off" value="{{ old('last_name') }}">
@@ -52,7 +52,7 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-12">
                                         <div class="form-group">
-                                            <label for="email">Correo <strong style="color:red;">(*)</strong></label>
+                                            <label for="email">email <strong style="color:red;">(*)</strong></label>
                                             <input type="email" id="email" name="email"
                                                    class="form-control @error('email') is-invalid @enderror"
                                                    autocomplete="off" value="{{ old('email') }}">
@@ -64,7 +64,7 @@
 
                                     <div class="col-lg-6 col-md-6 col-sm-12">
                                         <div class="form-group">
-                                            <label for="phone">Teléfono</label>
+                                            <label for="phone">Phone</label>
                                             <input type="text" id="phone" name="phone"
                                                    class="form-control @error('phone') is-invalid @enderror"
                                                    autocomplete="off" value="{{ old('phone') }}">
@@ -78,7 +78,7 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label for="image">Foto</label>
+                                            <label for="image">Photo</label>
                                             <input type="file" id="image" name="image" accept="image/*"
                                                    class="form-control-file @error('image') is-invalid @enderror">
                                             @error('image')
@@ -90,28 +90,25 @@
 
                                 {{-- Fila 4: eventos --}}
                                 <div class="form-group">
-                                    <label>Inscribir en eventos</label>
-                                    @forelse($events as $event)
-                                    <div class="custom-control custom-checkbox">
-                                        <input class="custom-control-input" type="checkbox"
-                                               id="event_{{ $event->id }}" name="events[]" value="{{ $event->id }}"
-                                               {{ in_array($event->id, old('events', [])) ? 'checked' : '' }}>
-                                        <label for="event_{{ $event->id }}" class="custom-control-label">
+                                    <label for="evento">Register for events</label>
+                                    <select id="evento" name="events[]" class="form-control" multiple="multiple"
+                                            data-placeholder="Seleccione eventos" style="width:100%;">
+                                        @foreach($events as $event)
+                                        <option value="{{ $event->id }}"
+                                                {{ in_array($event->id, old('events', [])) ? 'selected' : '' }}>
                                             {{ $event->name }} - {{ \Carbon\Carbon::parse($event->start_date)->format('Y-m-d') }}
-                                        </label>
-                                    </div>
-                                    @empty
-                                    <p class="text-muted">No hay eventos creados</p>
-                                    @endforelse
+                                        </option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="card-footer">
                                 <div class="row">
                                     <div class="col-lg-2 col-xs-4">
-                                        <button type="submit" class="btn btn-primary btn-block btn-flat">Registrar</button>
+                                        <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
                                     </div>
                                     <div class="col-lg-2 col-xs-4">
-                                        <a href="{{ route('attendees.index') }}" class="btn btn-danger btn-block btn-flat">Atras</a>
+                                        <a href="{{ route('attendees.index') }}" class="btn btn-danger btn-block btn-flat">Back</a>
                                     </div>
                                 </div>
                             </div>

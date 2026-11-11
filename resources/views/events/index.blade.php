@@ -42,23 +42,28 @@
                                     <td>{{ $event->id }}</td>
                                     <td>{{ $event->name }}</td>
                                     <td>{{ $event->description }}</td>
-                                    <td>{{ $event->start_date,\Carbon\Carbon::parse($event->start_date)->format('Y-m-d') }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($event->start_date)->format('Y-m-d') }}</td>
                                     <td>{{ $event->location }}</td>
                                     <td>{{ $event->registration_count }}</td>
-                                    <td>{{ $event->status}}</td>
+                                    <td>
+                                            <span class="badge {{ $event->status ? 'badge-success' : 'badge-danger' }}">
+                                                {{ $event->status ? 'Active' : 'Inactive' }}
+                                            </span>
+                                    </td>
 
                                     <td>
-                                        <a href="{{ route('events.edit', $event) }}" class="btn btn-info btn-sm" title="Editar">
-                                            <i class="fas fa-pencil-alt"></i>
-                                        </a>
-                                        <a href="{{ route('events.show', $event) }}" class="btn btn-success btn-sm" title="Ver">
+                                        <a href="{{ route('events.show', $event) }}" class="btn btn-warning btn-sm" title="View">
                                             <i class="fas fa-eye"></i>
                                         </a>
+
+                                        <a href="{{ route('events.edit', $event) }}" class="btn btn-info btn-sm" title="Edit">
+                                            <i class="fas fa-pencil-alt"></i>
+                                        </a>
                                         <form class="d-inline" action="{{ route('events.destroy', $event) }}" method="POST"
-                                              onsubmit="return confirm('¿Eliminar este evento?')">
+                                              onsubmit="return confirm('¿Delete this event?')">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm" title="Eliminar">
+                                            <button type="submit" class="btn btn-danger btn-sm" title="Delete">
                                                 <i class="fas fa-trash-alt"></i>
                                             </button>
                                         </form>

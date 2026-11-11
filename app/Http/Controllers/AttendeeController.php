@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Attendee;
 use App\Models\Event;
 use App\Models\Registration;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
+use App\Http\Requests\AttendeeRequest;
 
 
 class AttendeeController extends Controller
@@ -33,20 +33,10 @@ class AttendeeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AttendeeRequest $request)
     {
+        $data = $request->validated();
 
-
-        $data = $request->validate([
-
-        'name'      => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'email'     => 'required|email|max:255|unique:attendees,email',
-            'phone'     => 'nullable|string|max:30',
-            'image'     => 'nullable|image|max:2048',
-            'events'    => 'nullable|array',
-            'events.*'  => 'exists:events,id',
-        ]);
 
         $imagename = null;
         if ($request->hasFile('image')) {
@@ -65,6 +55,7 @@ class AttendeeController extends Controller
         $attendee = Attendee::create($attendeeData);
 
 
+
         foreach ($request->input('events', []) as $eventId) {
             Registration::create([
                 'attendee_id'       => $attendee->id,
@@ -74,7 +65,7 @@ class AttendeeController extends Controller
             ]);
         }
 
-        return redirect()->route('attendees.index')->with('success', 'Asistente creado correctamente');
+        return redirect()->route('attendees.index')->with('success', 'Attendee created successfully');
 
     }
     public function show(Attendee $attendee)
@@ -89,18 +80,10 @@ class AttendeeController extends Controller
         return view('attendees.edit', compact('attendee', 'events', 'inscritos'));
     }
 
-    public function update(Request $request, Attendee $attendee)
+    public function update(AttendeeRequest $request, Attendee $attendee)
     {
 
-        $data = $request->validate([
-            'name'      => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'email'     => 'required|email|max:255|unique:attendees,email,' . $attendee->id,
-            'phone'     => 'nullable|string|max:30',
-            'image' => 'nullable|image|max:5120',
-            'events'    => 'nullable|array',
-            'events.*'  => 'exists:events,id',
-        ]);
+        $data = $request->validated();
 
         $attendeeData = collect($data)->except(['events', 'image'])->all();
 
@@ -135,9 +118,9 @@ class AttendeeController extends Controller
             ]);
         }
 
-        return redirect()->route('attendees.index')->with('success', 'Asistente actualizado correctamente');
+        return redirect()->route('attendees.index')->with('success', 'Attendee updated successfully');
 
-        }
+    }
 
 
     public function destroy(Attendee $attendee)
@@ -147,6 +130,6 @@ class AttendeeController extends Controller
             unlink(public_path('uploads/attendees/' . $attendee->image));
         }
         $attendee->delete();
-        return redirect()->route('attendees.index')->with('success', 'Asistente eliminado correctamente');
+        return redirect()->route('attendees.index')->with('success', 'Attendee deleted successfully');
     }
 }

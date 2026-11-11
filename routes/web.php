@@ -31,9 +31,6 @@ Route::prefix('admin')->group(function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Route::post('events/{event}/inscribir', [EventsController::class, 'inscribir'])
-        ->name('events.inscribir');
-
     Route::resource('attendees',AttendeeController::class);
     Route::resource('events',EventsController::class);
 });

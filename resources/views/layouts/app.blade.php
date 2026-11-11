@@ -27,6 +27,15 @@
     <!-- summernote -->
     <link rel="stylesheet" href="{{asset('backend/plugins/summernote/summernote-bs4.css')}}">
 
+
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{asset('backend/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{asset('backend/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{asset('backend/plugins/select2/css/select2.min.css')}}">
+    <link rel="stylesheet" href="{{asset('backend/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{asset('backend/dist/css/select2.css')}}">
     @vite(['resources/sass/app.scss','resources/js/app.js'])
     @stack('css')
 
@@ -64,6 +73,21 @@
     <script src="{{asset('backend/dist/js/demo.js')}}"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="{{asset('backend/dist/js/pages/dashboard.js')}}"></script>
+
+    <!-- DataTables -->
+    <script src="{{asset('backend/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('backend/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('backend/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+    <script src="{{asset('backend/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+
+    <!-- Select2 -->
+    <script src="{{asset('backend/dist/js/select2.js')}}"></script>
+
+    <!-- Scripts del profe (siempre al final) -->
+    <script src="{{asset('backend/dist/js/selectors.js')}}"></script>
+    <script src="{{asset('backend/dist/js/table.js')}}"></script>
+
+
     @stack('scripts')
 
 </head>

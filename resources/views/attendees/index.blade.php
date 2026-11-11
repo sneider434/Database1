@@ -53,16 +53,24 @@
                                     <td>{{ $attendee->email }}</td>
                                     <td>{{ $attendee->phone }}</td>
                                     <td>{{ $attendee->registration_count }}</td>
-                                    <td>{{ $attendee->status}}</td>
+                                    <td>
+                                            <span class="badge {{ $attendee->status ? 'badge-success' : 'badge-danger' }}">
+                                                {{ $attendee->status ? 'Activo' : 'Inactivo' }}
+                                            </span>
+                                    </td>
+                                    <td>
 
+                                    </td>
 
                                     <td>
+                                        <a href="{{ route('attendees.show', $attendee) }}" class="btn btn-warning btn-sm" title="View">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+
                                         <a href="{{ route('attendees.edit', $attendee) }}" class="btn btn-info btn-sm" title="Editar">
                                             <i class="fas fa-pencil-alt"></i>
                                         </a>
-                                        <a href="{{ route('attendees.show', $attendee) }}" class="btn btn-success btn-sm" title="Ver">
-                                            <i class="fas fa-eye"></i>
-                                        </a>
+
                                         <form class="d-inline" action="{{ route('attendees.destroy', $attendee) }}" method="POST"
                                               onsubmit="return confirm('¿Eliminar este Asistente?')">
                                             @csrf

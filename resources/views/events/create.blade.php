@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Crear Evento')
+@section('title','Create Event')
 
 @section('content')
 <div class="content-wrapper">
@@ -28,7 +28,7 @@
                                             <label for="name">name <strong style="color:red;">(*)</strong></label>
                                             <input type="text" id="name" name="name"
                                                    class="form-control @error('name') is-invalid @enderror"
-                                                   placeholder="Por ejemplo, Conferencia anual"
+                                                   placeholder="For example, Annual conference"
                                                    autocomplete="off"  value="{{ old('name') }}">
                                             @error('name')
                                             <span class="invalid-feedback">{{ $message }}</span>
@@ -53,7 +53,7 @@
                                             <label for="location">location <strong style="color:red;">(*)</strong></label>
                                             <input type="text" id="location" name="location"
                                                    class="form-control @error('location') is-invalid @enderror"
-                                                   placeholder="Por ejemplo, Auditorio principal"
+                                                   placeholder="For example, Main auditorium"
                                                    autocomplete="off"  value="{{ old('location') }}">
                                             @error('location')
                                             <span class="invalid-feedback">{{ $message }}</span>
@@ -66,10 +66,10 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <label for="description">Descripción</label>
+                                            <label for="description">Description</label>
                                             <textarea id="description" name="description" rows="4"
                                                       class="form-control @error('description') is-invalid @enderror"
-                                                      placeholder="Describe brevemente el evento">{{ old('description') }}</textarea>
+                                                      placeholder="Briefly describe the event">{{ old('description') }}</textarea>
                                             @error('description')
                                             <span class="invalid-feedback">{{ $message }}</span>
                                             @enderror
@@ -81,10 +81,10 @@
                             <div class="card-footer">
                                 <div class="row">
                                     <div class="col-lg-2 col-xs-4">
-                                        <button type="submit" class="btn btn-primary btn-block btn-flat">Registrar</button>
+                                        <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
                                     </div>
                                     <div class="col-lg-2 col-xs-4">
-                                        <a href="{{ route('events.index') }}" class="btn btn-danger btn-block btn-flat">Atras</a>
+                                        <a href="{{ route('events.index') }}" class="btn btn-danger btn-block btn-flat">Back</a>
                                     </div>
                                 </div>
                             </div>

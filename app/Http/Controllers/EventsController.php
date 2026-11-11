@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
-use Illuminate\Http\Request;
-use App\Models\Attendee;
+use App\Http\Requests\EventRequest;
 
 
 class EventsController extends Controller
@@ -29,26 +28,20 @@ class EventsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(EventRequest $request)
     {
-        $data = $request->validate([
-            'name'        => 'required|string|max:255',
-            'start_date'  => 'required|date',
-            'location'    => 'required|string|max:255',
-            'description' => 'nullable|string',
-        ]);
+        $data = $request->validated();
 
         $data['status']        = 1;
         $data['registered_by'] = $request->user()->id;
-        Event::create($data);   // antes: $request->all()
-        return redirect()->route('events.index')->with('success', 'Evento creado correctamente');
+        Event::create($data);
+        return redirect()->route('events.index')->with('success', 'Event created successfully');
     }
 
     public function show(Event $event)
     {
         $event->load('registration.attendee');
-        $attendees = Attendee::orderBy('name')->get();
-        return view('events.show', compact('event', 'attendees'));
+        return view('events.show', compact('event'));
     }
 
     public function edit(Event $event)
@@ -56,45 +49,18 @@ class EventsController extends Controller
         return view('events.edit', compact('event'));
     }
 
-    public function update(Request $request, Event $event)
+    public function update(EventRequest $request, Event $event)
     {
-        $data = $request->validate([
-            'name'        => 'required|string|max:255',
-            'start_date'  => 'required|date',
-            'location'    => 'required|string|max:255',
-            'description' => 'nullable|string',
-        ]);
+        $data = $request->validated();
         $event->update($data);
-        return redirect()->route('events.index')->with('success', 'Evento actualizado correctamente');
+        return redirect()->route('events.index')->with('success', 'Event updated successfully');
     }
 
     public function destroy(Event $event)
     {
-        $event->registration()->delete();   // evita error de llave foránea
+        $event->registration()->delete();   // avoids foreign key error
         $event->delete();
-        return redirect()->route('events.index')->with('success', 'Evento eliminado correctamente');
-    }
-
-    public function inscribir(Request $request, Event $event)
-    {
-        $data = $request->validate([
-            'attendee_id' => 'required|exists:attendees,id',
-            'notes'       => 'nullable|string',
-        ]);
-
-        // evita duplicados
-        if ($event->registration()->where('attendee_id', $data['attendee_id'])->exists()) {
-            return back()->with('error', 'Ese asistente ya está inscrito');
-        }
-
-        $event->registration()->create([
-            'attendee_id'       => $data['attendee_id'],
-            'registration_date' => now(),
-            'notes'             => $data['notes'] ?? null,
-            'registered_by'     => $request->user()->id,
-        ]);
-
-        return redirect()->route('events.show', $event)->with('success', 'Asistente inscrito');
+        return redirect()->route('events.index')->with('success', 'Event deleted successfully');
     }
 
 }
